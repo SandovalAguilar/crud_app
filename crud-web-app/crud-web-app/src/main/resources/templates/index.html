@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Inventario</title>
+</head>
+<body>
+
+<div align="center">
+    <h1>Lista del Inventario</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Departamento</th>
+                <th>Cantidad</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Entregado</th>
+                <th>Recibido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over the list of InventoryOutputs and display each item's data -->
+            <tr th:each="inventoryOutputs : ${listInventoryOutputs}">
+                <td th:text="${inventoryOutputs.id}"></td>
+                <td th:text="${inventoryOutputs.departamento}"></td>
+                <td th:text="${inventoryOutputs.cantidad}"></td>
+                <td th:text="${inventoryOutputs.descripcion}"></td>
+                <td th:text="${inventoryOutputs.fecha}"></td>
+                <td th:text="${inventoryOutputs.entregado}"></td>
+                <td th:text="${inventoryOutputs.recibido}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
