@@ -8,7 +8,7 @@
 <body>
 
 <div class="container mt-4">
-    <h1>Control de Inventario</h1>
+    <h1>Inventario</h1>
     
     <!-- Tabs Navigation -->
     <ul class="nav nav-tabs" id="inventoryTabs" role="tablist">
@@ -17,6 +17,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" id="entries-tab" data-toggle="tab" href="#entries" role="tab" aria-controls="entries" aria-selected="false">Entradas del Inventario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="control-tab" data-toggle="tab" href="#control" role="tab" aria-controls="control" aria-selected="false">Control de Inventario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false">Pedidos</a>
         </li>
     </ul>
     
@@ -71,6 +77,91 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Control de Inventario Tab -->
+        <div class="tab-pane fade" id="control" role="tabpanel" aria-labelledby="control-tab">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Material Oficina</th>
+                        <th>Descripción Oficina</th>
+                        <th>Cantidad Oficina</th>
+                        <th>Material Intendencia</th>
+                        <th>Descripción Intendencia</th>
+                        <th>Cantidad Intendencia</th>
+                        <th>Consumibles</th>
+                        <th>Descripción Consumibles</th>
+                        <th>Cantidad Consumibles</th>
+                        <th>Material Mantenimiento</th>
+                        <th>Descripción Mantenimiento</th>
+                        <th>Cantidad Mantenimiento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="control : ${listInventoryControls}">
+                        <td th:text="${control.materialOficina}"></td>
+                        <td th:text="${control.descripcionOficina}"></td>
+                        <td th:text="${control.cantidadOficina}"></td>
+                        <td th:text="${control.materialIntendencia}"></td>
+                        <td th:text="${control.descripcionIntendencia}"></td>
+                        <td th:text="${control.cantidadIntendencia}"></td>
+                        <td th:text="${control.consumibles}"></td>
+                        <td th:text="${control.descripcionConsumibles}"></td>
+                        <td th:text="${control.cantidadConsumibles}"></td>
+                        <td th:text="${control.materialMtto}"></td>
+                        <td th:text="${control.descripcionMtto}"></td>
+                        <td th:text="${control.cantidadMtto}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Inventory Orders Tab -->
+        <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripción Material Oficina</th>
+                        <th>Cantidad Material Oficina</th>
+                        <th>Descripción Material Intendencia</th>
+                        <th>Cantidad Material Intendencia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order : ${listInventoryOrders}">
+                        <td th:text="${order.fecha}"></td>
+                        <td th:text="${order.descripcionMaterialOficina}"></td>
+                        <td th:text="${order.cantidadMaterialOficina}"></td>
+                        <td th:text="${order.descripcionMaterialIntendencia}"></td>
+                        <td th:text="${order.cantidadMaterialIntendencia}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		
+		<!-- Pendientes de Requisición Tab -->
+		<div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+		    <table class="table table-bordered">
+		        <thead>
+		            <tr>
+		                <th>Nombre Material</th>
+		                <th>Solicitante</th>
+		                <th>Departamento</th>
+		                <th>Fecha</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="pending : ${listInventoryPending}">
+		                <td th:text="${pending.nombreMaterial}"></td>
+		                <td th:text="${pending.solicitante}"></td>
+		                <td th:text="${pending.departamento}"></td>
+		                <td th:text="${pending.fecha}"></td>
+		            </tr>
+		        </tbody>
+		    </table>
+		</div>
+		
     </div>
 </div>
 
