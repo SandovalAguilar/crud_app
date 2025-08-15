@@ -1,39 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Inventario</title>
+    <title>Control de Inventario</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
 
-<div align="center">
-    <h1>Lista del Inventario</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Departamento</th>
-                <th>Cantidad</th>
-                <th>Descripción</th>
-                <th>Fecha</th>
-                <th>Entregado</th>
-                <th>Recibido</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Iterate over the list of InventoryOutputs and display each item's data -->
-            <tr th:each="inventoryOutputs : ${listInventoryOutputs}">
-                <td th:text="${inventoryOutputs.id}"></td>
-                <td th:text="${inventoryOutputs.departamento}"></td>
-                <td th:text="${inventoryOutputs.cantidad}"></td>
-                <td th:text="${inventoryOutputs.descripcion}"></td>
-                <td th:text="${inventoryOutputs.fecha}"></td>
-                <td th:text="${inventoryOutputs.entregado}"></td>
-                <td th:text="${inventoryOutputs.recibido}"></td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container mt-4">
+    <h1>Control de Inventario</h1>
+    
+    <!-- Tabs Navigation -->
+    <ul class="nav nav-tabs" id="inventoryTabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="outputs-tab" data-toggle="tab" href="#outputs" role="tab" aria-controls="outputs" aria-selected="true">Salidas del Inventario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="entries-tab" data-toggle="tab" href="#entries" role="tab" aria-controls="entries" aria-selected="false">Entradas del Inventario</a>
+        </li>
+    </ul>
+    
+    <!-- Tab Content -->
+    <div class="tab-content" id="inventoryTabsContent">
+        <!-- Inventory Outputs Tab -->
+        <div class="tab-pane fade show active" id="outputs" role="tabpanel" aria-labelledby="outputs-tab">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Departamento</th>
+                        <th>Cantidad</th>
+                        <th>Descripcion</th>
+                        <th>Fecha</th>
+                        <th>Entregado</th>
+                        <th>Recibido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="output : ${listInventoryOutputs}">
+                        <td th:text="${output.departamento}"></td>
+                        <td th:text="${output.cantidad}"></td>
+                        <td th:text="${output.descripcion}"></td>
+                        <td th:text="${output.fecha}"></td>
+                        <td th:text="${output.entregado}"></td>
+                        <td th:text="${output.recibido}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Inventory Entries Tab -->
+        <div class="tab-pane fade" id="entries" role="tabpanel" aria-labelledby="entries-tab">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Proveedor</th>
+                        <th>Descripcion Material</th>
+                        <th>Cantidad</th>
+                        <th>Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="entry : ${listInventoryEntries}">
+                        <td th:text="${entry.fecha}"></td>
+                        <td th:text="${entry.nombreProveedor}"></td>
+                        <td th:text="${entry.descripcionMaterial}"></td>
+                        <td th:text="${entry.cantidad}"></td>
+                        <td th:text="${entry.nota}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
+
+<!-- Include Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

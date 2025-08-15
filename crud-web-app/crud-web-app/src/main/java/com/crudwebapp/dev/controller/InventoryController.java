@@ -5,18 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.crudwebapp.dev.service.InventoryEntriesService;
 import com.crudwebapp.dev.service.InventoryOutputsService;
 
 @Controller
-public class InventoryOutputsController {
-    
+public class InventoryController {
+
+    @Autowired
+    private InventoryEntriesService inventoryEntriesService;
+
     @Autowired
     private InventoryOutputsService inventoryOutputsService;
-    
-    // Display list of items for inventory outputs
-    @GetMapping("/inventory-outputs")
-    public String viewInventoryOutputs(Model model) {
+
+    @GetMapping("/")
+    public String viewInventory(Model model) {
+        // Fetch the lists from both services
+        model.addAttribute("listInventoryEntries", inventoryEntriesService.getAllInventoryEntries());
         model.addAttribute("listInventoryOutputs", inventoryOutputsService.getAllInventoryOutputs());
-        return "inventory-outputs";  // Use a new view template
+        return "index";  // Return the combined HTML page with both lists
     }
 }

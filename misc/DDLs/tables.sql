@@ -2,7 +2,6 @@ CREATE DATABASE inventario_db;
 
 USE inventario_db;
 
--- Esquema para las operaciones de inventario
 CREATE TABLE inventario_salidas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     departamento VARCHAR(100),
@@ -22,7 +21,6 @@ CREATE TABLE inventario_entradas (
     nota TEXT
 );
 
--- Esquema para el control de inventario
 CREATE TABLE control_inventario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     material_oficina VARCHAR(255),
@@ -39,7 +37,6 @@ CREATE TABLE control_inventario (
     cantidad_mtto INT
 );
 
--- Esquema para los pedidos
 CREATE TABLE pedidos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE,
@@ -47,4 +44,12 @@ CREATE TABLE pedidos (
     cantidad_material_oficina INT,
     descripcion_material_intendencia VARCHAR(255),
     cantidad_material_intendencia INT
+);
+
+CREATE TABLE material_pendiente_requisicion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_material VARCHAR(255),
+    solicitante VARCHAR(100),
+    departamento VARCHAR(100),
+    fecha DATE
 );
