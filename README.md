@@ -38,7 +38,7 @@ A su vez, se utilizó XAMPP para la ejecución local del sistema. Por último, s
 
 ### DDLs
 
-![Diagrama de Arquitectura](pictures/schemas.png)
+![Diagrama de Arquitectura](pictures/Schemas.png)
  
 Definiciones:
 
